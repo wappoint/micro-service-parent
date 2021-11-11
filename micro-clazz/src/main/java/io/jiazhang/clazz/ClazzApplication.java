@@ -8,6 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @author jiazhang
  * @wechat linger_zhang
  * @date 2021-11-11
+ *
  */
 @SpringBootApplication
 @EnableDiscoveryClient
