@@ -1,0 +1,52 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: GATEWAY
+  cloud:
+    consul:
+      host: 192.168.1.30
+      port: 8500
+      discovery:
+        heartbeat:
+          enabled: true
+        service-name: ${spring.application.name}
+    gateway:
+      routes:  #配置路由规格
+        - id: clazz_router  #指定路由id
+          uri: lb://CLAZZS
+          predicates:
+            - Path=/api/clazz/hello/**
+          filters:
+            - StripPrefix=2
+
+        - id: city_router #指定路由id
+          uri: lb://CITYS
+          predicates:
+              - Path=/api/city/hello/**
+          filters:
+            - StripPrefix=2
+
+        - id: group_router  #指定路由id
+          uri: lb://GROUPS
+          predicates:
+             - Path=/api/group/hello/**
+          filters:
+            - StripPrefix=2
+
+        - id: student_router  #指定路由id
+          uri: lb://STUDENTS
+          predicates:
+             - Path=/api/student/hello/**
+          filters:
+            - StripPrefix=2
+
+        - id: tag_router  #指定路由id
+          uri: lb://TAGS
+          predicates:
+             - Path=/api/tag/hello/**
+          filters:
+            - StripPrefix=2
+logging:
+  level:
+    org.springframework.cloud: debug

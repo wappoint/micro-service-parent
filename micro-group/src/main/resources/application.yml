@@ -1,0 +1,13 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: GROUPS
+  cloud:
+    consul:
+      host: 192.168.1.30
+      port: 8500
+      discovery:
+        heartbeat:
+          enabled: true
+        service-name: ${spring.application.name}
